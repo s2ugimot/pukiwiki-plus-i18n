@@ -155,3 +155,10 @@ span.size7 {
 .anchor_super { display: none; }
 
 .editsection { display: none; }
+
+/* enable word wrapping for pre */
+pre {
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

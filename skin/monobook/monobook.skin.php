@@ -20,7 +20,7 @@ $favicon = '';
 // Select navigation tabs as follows:
 /* add, attachlist, attachlistall, backup, copy, diff, edit, filelist, freeze, help, list, new, rdf,
    recent, refer, related, reload, rename, rss, rss10, rss20, search, source, top, trackback, upload, yetlist */
-$tabs = array('edit', 'diff');
+$tabs = array('edit', 'upload', 'source', 'backup');
 
 // Enable paraedit plugin
 $enable_paraedit = FALSE;
@@ -62,6 +62,12 @@ $background = (empty($vars['page']) || $wikinote->is_notepage() || in_array($var
 // Login
 $login = exist_plugin('monobook_login') ? do_plugin_inline('monobook_login') : '';
 $login = exist_plugin('login') ? str_replace('cmd=monobook_login', 'cmd=login', $login) : $login; // would be feasible
+
+// Role
+$role = exist_plugin_convert('role') ? do_plugin_convert('role') : '';
+
+// Lightbox 2
+$use_lightbox = true;
 
 // Navigation tab
 $navigation_tab = plugin_monobook_navigation($wikinote, $tabs, $background);
@@ -118,6 +124,7 @@ if (isset($pkwk_dtd)) {
 <?php if ($favicon) echo ' <link rel="shortcut icon" href="' . IMAGE_URI . $favicon . '" type="image/x-icon" />' ?>
  <link rel="stylesheet" type="text/css" media="screen" href="<?php echo SKIN_URI ?>monobook/monobook.css" />
 <?php if ($side) echo ' <link rel="stylesheet" type="text/css" media="screen" href="' . SKIN_URI . 'monobook/monobook.threecolumn.css" />' . "\n" ?>
+<?php if ($use_lightbox) echo ' <link rel="stylesheet" type="text/css" media="screen" href="' . SKIN_URI . 'lightbox/css/lightbox.css" />' . "\n" ?>
  <link rel="stylesheet" type="text/css" media="print" href="<?php echo SKIN_URI ?>monobook/monobook.print.css" />
  <link rel="alternate" type="application/rss+xml" title="RSS" href="<?php echo $_LINK['rss'] ?>" />
  <script type="text/javascript">
@@ -132,6 +139,11 @@ if (isset($pkwk_dtd)) {
 <?php if (! $use_local_time) { ?>
  <script type="text/javascript" src="<?php echo SKIN_URI ?>tzCalculation_LocalTimeZone.js"></script>
 <?php } ?>
+<?php if ($use_lightbox) { ?>
+ <script type="text/javascript" src="<?php echo SKIN_URI ?>lightbox/js/prototype.js"></script>
+ <script type="text/javascript" src="<?php echo SKIN_URI ?>lightbox/js/scriptaculous.js?load=effects"></script>
+ <script type="text/javascript" src="<?php echo SKIN_URI ?>lightbox/js/lightbox.js"></script>
+<?php } ?>
 <?php echo $head_tag ?>
 </head>
 <body>
@@ -142,6 +154,12 @@ if (isset($pkwk_dtd)) {
    <?php echo $navigation_tab ?>
    <div id="content"<?php echo $background ?>>
     <h1 class="firstHeading"><?php echo $display_title ?></h1><div id="contentSub"></div>
+
+    <!-- topicpath -->
+    <?php if ($is_page) { ?>
+     <p><?php require_once(PLUGIN_DIR.'topicpath.inc.php'); echo plugin_topicpath_convert(); ?></p>
+    <?php } ?>
+
     <?php echo $body ?><?php echo $notes ?>
    </div>
   </div>
@@ -149,7 +167,7 @@ if (isset($pkwk_dtd)) {
  <?php if($side) echo '<div id="sidebar">' . $side . '</div>' ?>
  <div style="clear:both;height:1em;"></div>
  <div id="logo"><a href="<?php echo get_script_uri() ?>" style="background-image: url(<?php echo IMAGE_URI . $logo ?>);"></a></div>
- <div id="personal"><ul><?php echo $login ?></ul></div>
+ <div id="personal"><ul><?php echo $login ?></ul><ul><?php echo $role ?></ul></div>
  <div id="footer">
   <div id="f-officialico">
    <a href="http://pukiwiki.cafelounge.net/plus/"><img src="<?php echo IMAGE_URI ?>pukiwiki-plus.png" alt="PukiWikiPlus" /></a>
@@ -167,5 +185,6 @@ if (isset($pkwk_dtd)) {
   <div style="clear:both;"></div>
  </div>
 </div>
+<?php echo $foot_tag ?>
 </body>
 </html>

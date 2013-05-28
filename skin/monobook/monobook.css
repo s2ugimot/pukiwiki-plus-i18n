@@ -90,6 +90,10 @@ h4 { font-size: 116%; }
 h5 { font-size: 100%; }
 h6 { font-size: 80%;  }
 
+h2 { margin-top: 2.8em; }
+h3 { margin-top: 1.4em; }
+h4 { margin-top: 1.4em; }
+
 p {
 	margin: .4em 0 .5em;
 	line-height: 1.5em;
@@ -1006,4 +1010,17 @@ td.vote_td1 {
 td.vote_td2 {
 	color:inherit;
 	background-color:#f2f2f2;
+}
+
+/* topicpath.inc.php */
+#topicpath {
+	font-size: small;
+	margin-bottom: 3em;
+}
+
+/* enable word wrapping for pre */
+pre {
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }

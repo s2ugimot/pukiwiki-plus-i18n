@@ -140,8 +140,9 @@ if (isset($pkwk_dtd)) {
  <script type="text/javascript" src="<?php echo SKIN_URI ?>tzCalculation_LocalTimeZone.js"></script>
 <?php } ?>
 <?php if ($use_lightbox) { ?>
- <script type="text/javascript" src="<?php echo SKIN_URI ?>lightbox/js/prototype.js"></script>
- <script type="text/javascript" src="<?php echo SKIN_URI ?>lightbox/js/scriptaculous.js?load=effects"></script>
+ <script type="text/javascript" src="<?php echo SKIN_URI ?>lightbox/js/jquery-1.7.2.min.js"></script>
+ <script type="text/javascript" src="<?php echo SKIN_URI ?>lightbox/js/jquery.smooth-scroll.min.js"></script>
+ <script type="text/javascript" src="<?php echo SKIN_URI ?>lightbox/js/jquery-ui-1.8.18.custom.min.js"></script>
  <script type="text/javascript" src="<?php echo SKIN_URI ?>lightbox/js/lightbox.js"></script>
 <?php } ?>
 <?php echo $head_tag ?>

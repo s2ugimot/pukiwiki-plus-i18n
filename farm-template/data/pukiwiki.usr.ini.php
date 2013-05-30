@@ -35,9 +35,7 @@ defined('PKWK_USE_REDIRECT') or define('PKWK_USE_REDIRECT', 1);
 $auto_template_func = 1;
 $auto_template_rules = array(
         '(.+)\/.+'              => '\1/template',
-        '([^\/]+?)\/[^\/]+'     => 'templates/nonSucceeded/\1',
-        '([^\/]+?)\/.+'         => 'templates/succeeded/\1',
-        '.+'                    => 'templates/all'                                                                                                                       
+        '(.+)\/.+'              => 'templates/\1',
+        '.+'                    => 'templates/all'
 );
 
-?>

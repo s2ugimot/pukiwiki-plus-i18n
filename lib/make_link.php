@@ -371,7 +371,7 @@ class Link_url extends Link
  (?:>|:)
 )?
 (                 # (3) url
- (?:(?:https?|ftp|news):\/\/|mailto:)[\w\/\@\$()!?&%#:;.,~'=*+-]+
+ (?:(?:https?|ftp|news):\/\/|mailto:)[\w\/\@\$()!?&%#:;.,~'=*+-\[\]]+
 )
 (?($s1)\]\])      # close bracket
 EOD;
@@ -416,7 +416,7 @@ class Link_url_interwiki extends Link
 		return <<<EOD
 \[       # open bracket
 (        # (1) url
- (?:(?:https?|ftp|news):\/\/|\.\.?\/)[!~*'();\/?:\@&=+\$,%#\w.-]*
+ (?:(?:https?|ftp|news):\/\/|\.\.?\/)[!~*'();\/?:\@&=+\$,%#\w.-\[\]]*
 )
 \s
 ([^\]]+) # (2) alias
@@ -995,7 +995,7 @@ function get_interwiki_url($name, $param)
 		$interwikinames = $matches = array();
 		foreach (get_source($interwiki) as $line)
 			if (preg_match('/\[(' . '(?:(?:https?|ftp|news):\/\/|\.\.?\/)' .
-			    '[!~*\'();\/?:\@&=+\$,%#\w.-]*)\s([^\]]+)\]\s?([^\s]*)/',
+			    '[!~*\'();\/?:\@&=+\$,%#\w.-\[\]]*)\s([^\]]+)\]\s?([^\s]*)/',
 			    $line, $matches))
 				$interwikinames[$matches[2]] = array($matches[1], $matches[3]);
 	}

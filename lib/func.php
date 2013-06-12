@@ -43,7 +43,7 @@ function is_pagename($str)
 function is_url($str, $only_http = FALSE)
 {
 	$scheme = $only_http ? 'https?' : 'https?|ftp|news';
-	return preg_match('/^(' . $scheme . ')(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]*)$/', $str);
+	return preg_match('/^(' . $scheme . ')(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#\[\]]*)$/', $str);
 }
 
 // If the page exists
